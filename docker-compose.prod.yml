@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # 외부 포트 미노출 - 내부 네트워크만 사용
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    # 외부 포트 미노출 - 내부 네트워크만 사용
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    env_file: .env.production
+    environment:
+      # docker 네트워크 내부 서비스명으로 오버라이드
+      DB_HOST: postgres
+      REDIS_HOST: redis
+      NODE_ENV: production
+    depends_on:
+      - postgres
+      - redis
+
+  frontend:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  redis_data:
