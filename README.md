@@ -237,6 +237,8 @@ docker compose -f docker-compose.prod.yml run --rm backend \
 
 ```bash
 docker compose -f docker-compose.prod.yml up -d --build
+#env파일 명명 다른경우
+docker compose --env-file .env.production -f docker-compose.prod.yml up -d --build
 ```
 
 빌드 시간 약 3~5분 소요 (첫 실행 시).
@@ -248,6 +250,8 @@ docker compose -f docker-compose.prod.yml exec backend node dist/scripts/migrate
 # 상태 확인
 docker compose -f docker-compose.prod.yml ps
 docker compose -f docker-compose.prod.yml logs backend --tail=30
+docker compose --env-file .env.production -f docker-compose.prod.yml logs backend --tail=50
+docker compose --env-file .env.production -f docker-compose.prod.yml logs frontend --tail=50
 ```
 
 ---
