@@ -86,7 +86,8 @@ export function ChatPage() {
                     <button
                       key={q}
                       onClick={() => { setInput(q); textareaRef.current?.focus(); }}
-                      className="px-4 py-3 rounded-xl bg-white border border-[#c4c6d1]/30 text-sm text-[#191c1d] hover:bg-[#f3f4f5] hover:border-[#c4c6d1]/60 transition-all text-left shadow-sm"
+                      className="rounded-xl bg-white border border-[#c4c6d1]/30 text-sm text-[#191c1d] hover:bg-[#f3f4f5] hover:border-[#c4c6d1]/60 transition-all text-left shadow-sm"
+                      style={{ padding: '4px' }}
                     >
                       {q}
                     </button>
@@ -179,9 +180,9 @@ export function ChatPage() {
             <button
               type="submit"
               disabled={!input.trim() || loading}
-              className="px-4 py-3 bg-[#001839] text-white rounded-xl font-semibold text-sm disabled:opacity-40 hover:bg-[#002c5f] active:scale-95 transition-all flex items-center gap-1.5 flex-shrink-0"
+              className="min-w-[48px] min-h-[48px] px-4 py-3 bg-[#001839] text-white rounded-xl font-semibold text-sm disabled:opacity-40 hover:bg-[#002c5f] active:scale-95 transition-all flex items-center justify-center gap-1.5 flex-shrink-0"
             >
-              <span className="material-symbols-outlined" style={{ fontSize: 20 }}>send</span>
+              <span className="material-symbols-outlined" style={{ fontSize: 24 }}>send</span>
               <span className="hidden sm:inline">전송</span>
             </button>
           </form>

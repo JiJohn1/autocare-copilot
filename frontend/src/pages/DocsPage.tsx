@@ -93,8 +93,8 @@ export function DocsPage() {
       setSelectedFile(null);
       return;
     }
-    if (file.size > 20 * 1024 * 1024) {
-      setUploadError('파일 크기는 20MB 이하여야 합니다.');
+    if (file.size >35 * 1024 * 1024) {
+      setUploadError('파일 크기는 35MB 이하여야 합니다.');
       setSelectedFile(null);
       return;
     }
@@ -147,18 +147,18 @@ export function DocsPage() {
       <div className="bg-white rounded-xl border border-[#c4c6d1]/15 shadow-sm overflow-hidden">
 
         {/* 탭 헤더 */}
-        <div className="flex border-b border-[#c4c6d1]/15">
+        <div className="flex gap-2 px-4 py-3 bg-white border-b border-[#c4c6d1]/20">
           {([
-            { key: 'manual', label: '직접 입력', icon: 'edit' },
+            { key: 'manual', label: '직접 입력', icon: 'edit_note' },
             { key: 'upload', label: '파일 업로드', icon: 'upload_file' },
           ] as { key: Tab; label: string; icon: string }[]).map(({ key, label, icon }) => (
             <button
               key={key}
               onClick={() => setActiveTab(key)}
-              className={`flex items-center gap-1.5 px-5 py-3.5 text-sm font-semibold transition-colors ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all flex-1 justify-center border ${
                 activeTab === key
-                  ? 'text-[#001839] border-b-2 border-[#001839] bg-white'
-                  : 'text-[#747780] hover:text-[#001839] hover:bg-[#f3f4f5]/60'
+                  ? 'bg-[#001839] text-white border-[#001839]'
+                  : 'bg-white text-[#43474f] border-[#c4c6d1]/60 hover:border-[#001839]/40 hover:text-[#001839]'
               }`}
             >
               <span className="material-symbols-outlined" style={{ fontSize: 18 }}>{icon}</span>
@@ -215,7 +215,7 @@ export function DocsPage() {
                 </div>
                 <button
                   type="submit" disabled={submitting}
-                  className="flex items-center gap-1.5 px-5 py-2.5 bg-[#001839] text-white rounded-lg text-sm font-semibold disabled:opacity-40 hover:bg-[#002c5f] active:scale-95 transition-all flex-shrink-0"
+                  className="flex items-center gap-1.5 px-5 py-3 bg-[#001839] text-white rounded-lg text-sm font-semibold disabled:opacity-40 hover:bg-[#002c5f] active:scale-95 transition-all flex-shrink-0"
                 >
                   {submitting ? (
                     <><span className="material-symbols-outlined text-sm animate-spin">refresh</span>저장 중...</>
@@ -324,7 +324,7 @@ export function DocsPage() {
                   type="button"
                   disabled={!selectedFile || isUploading}
                   onClick={handleUpload}
-                  className="flex items-center gap-2 px-6 py-2.5 bg-[#00a2c8] text-white rounded-lg text-sm font-semibold disabled:opacity-40 hover:bg-[#0090b4] active:scale-95 transition-all"
+                  className="flex items-center gap-2 px-6 py-3 bg-[#00a2c8] text-white rounded-lg text-sm font-semibold disabled:opacity-40 hover:bg-[#0090b4] active:scale-95 transition-all"
                 >
                   {isUploading ? (
                     <><span className="material-symbols-outlined text-sm animate-spin">refresh</span>처리 중...</>

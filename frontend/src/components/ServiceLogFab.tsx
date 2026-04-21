@@ -61,7 +61,8 @@ export function ServiceLogFab() {
   return (
     <div
       ref={panelRef}
-      style={{ position: 'fixed', bottom: '1.5rem', right: '1.5rem', zIndex: 9000 }}
+      className="fixed bottom-[5.5rem] sm:bottom-6 right-6"
+      style={{ zIndex: 9000 }}
     >
       {/* ── 로그 패널 ── */}
       <div

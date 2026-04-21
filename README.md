@@ -246,6 +246,7 @@ docker compose --env-file .env.production -f docker-compose.prod.yml up -d --bui
 ```bash
 # 마이그레이션 (서비스 실행 후)
 docker compose -f docker-compose.prod.yml exec backend node dist/scripts/migrate.js
+#docker compose --env-file .env.production -f docker-compose.prod.yml exec backend node dist/scripts/migrate.js
 
 # 상태 확인
 docker compose -f docker-compose.prod.yml ps
@@ -303,15 +304,18 @@ echo "*/5 * * * * curl -s 'https://www.duckdns.org/update?domains=${DUCK_DOMAIN}
 ### 유지보수 명령어
 
 ```bash
+# 상태 확인
+docker compose --env-file .env.production -f docker-compose.prod.yml ps
+
 # 로그 확인
-docker compose -f docker-compose.prod.yml logs -f
+docker compose --env-file .env.production -f docker-compose.prod.yml logs -f
 
 # 코드 업데이트 후 재배포
 git pull
-docker compose -f docker-compose.prod.yml up -d --build
+docker compose --env-file .env.production -f docker-compose.prod.yml up -d --build
 
 # 서비스 중지
-docker compose -f docker-compose.prod.yml down
+docker compose --env-file .env.production -f docker-compose.prod.yml down
 
 # DB 데이터 유지하며 중지
 docker compose -f docker-compose.prod.yml stop
