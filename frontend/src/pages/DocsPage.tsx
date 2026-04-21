@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef, DragEvent } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import type { DragEvent } from 'react'
 import { api, type DocumentChunk, type IngestJob } from '../api/client';
 import { PageLogPanel } from '../components/PageLogPanel';
 
