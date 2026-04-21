@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #001839;
+  --color-primary-container: #002c5f;
+  --color-primary-fixed: #d7e3ff;
+  --color-primary-fixed-dim: #abc7ff;
+  --color-on-primary: #ffffff;
+  --color-on-primary-fixed: #001b3f;
+  --color-on-primary-fixed-variant: #25467a;
+  --color-on-primary-container: #7695ce;
+  --color-inverse-primary: #abc7ff;
+
+  --color-secondary: #46607f;
+  --color-secondary-container: #bfd9fd;
+  --color-secondary-fixed: #d1e4ff;
+  --color-secondary-fixed-dim: #aec9ec;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-fixed: #001d36;
+  --color-on-secondary-fixed-variant: #2e4866;
+  --color-on-secondary-container: #455f7e;
+
+  --color-tertiary: #001c25;
+  --color-tertiary-container: #003240;
+  --color-tertiary-fixed: #b8eaff;
+  --color-tertiary-fixed-dim: #56d5ff;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-fixed: #001f28;
+  --color-on-tertiary-fixed-variant: #004d61;
+  --color-on-tertiary-container: #00a2c8;
+
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
+
+  --color-surface: #f8f9fa;
+  --color-surface-dim: #d9dadb;
+  --color-surface-bright: #f8f9fa;
+  --color-surface-variant: #e1e3e4;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f4f5;
+  --color-surface-container: #edeeef;
+  --color-surface-container-high: #e7e8e9;
+  --color-surface-container-highest: #e1e3e4;
+  --color-on-surface: #191c1d;
+  --color-on-surface-variant: #43474f;
+  --color-inverse-surface: #2e3132;
+  --color-inverse-on-surface: #f0f1f2;
+
+  --color-outline: #747780;
+  --color-outline-variant: #c4c6d1;
+  --color-background: #f8f9fa;
+  --color-on-background: #191c1d;
+
+  --font-headline: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  color: #191c1d;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ── Material Symbols ── */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+
+/* ── Layout: sidebar offset ──
+   Tailwind v4 반응형 variant가 미생성되는 문제를 직접 미디어쿼리로 처리 */
+.app-root {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f8f9fa;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
+  min-width: 0;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .main-wrapper {
+    margin-left: 16rem; /* 256px = sidebar width */
+  }
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 16rem; /* 256px */
+  height: 100vh;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  background-color: #f3f4f5;
+  border-right: 1px solid rgba(196, 198, 209, 0.2);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    transform: translateX(0);
+  }
+}
+
+/* ── Mobile overlay ── */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+.sidebar-overlay.show {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .sidebar-overlay {
+    display: none !important;
+  }
+}
+
+/* ── Hamburger: hide on desktop ── */
+.hamburger-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .hamburger-btn {
+    display: none;
+  }
+}
+
+/* ── Sidebar close button: hide on desktop ── */
+.sidebar-close-btn {
+  display: flex;
+}
+
+@media (min-width: 1024px) {
+  .sidebar-close-btn {
+    display: none;
+  }
+}
