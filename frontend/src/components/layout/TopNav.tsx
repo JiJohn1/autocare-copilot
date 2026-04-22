@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 interface TopNavProps {
   title: string;
   onMenuClick: () => void;
@@ -16,12 +18,13 @@ export function TopNav({ title, onMenuClick }: TopNavProps) {
           >
             <span className="material-symbols-outlined" style={{ fontSize: 22 }}>menu</span>
           </button>
-          <span
-            className="text-base font-extrabold tracking-tight text-[#001839] truncate"
+          <Link
+            to="/"
+            className="text-base font-extrabold tracking-tight text-[#001839] truncate hover:opacity-70 transition-opacity"
             style={{ fontFamily: 'Manrope, sans-serif' }}
           >
             {title}
-          </span>
+          </Link>
         </div>
 
         {/* 오른쪽: 아이콘 액션 */}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { SideNav } from './components/layout/SideNav';
 import { TopNav } from './components/layout/TopNav';
 import { ServiceLogFab } from './components/ServiceLogFab';
@@ -7,8 +7,10 @@ import { ChatPage } from './pages/ChatPage';
 import { DocsPage } from './pages/DocsPage';
 import { RetrievalPage } from './pages/RetrievalPage';
 import { SystemPage } from './pages/SystemPage';
+import { HomePage } from './pages/HomePage';
 
 const pageTitles: Record<string, string> = {
+  '/': 'AutoCare Copilot',
   '/chat': 'Chat',
   '/docs': 'Documents',
   '/retrieval': 'Retrieval',
@@ -42,7 +44,7 @@ function Layout() {
         <TopNav title={title} onMenuClick={() => setSidebarOpen(true)} />
         <main className="flex-1 flex flex-col">
           <Routes>
-            <Route path="/" element={<Navigate to="/system" replace />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/docs" element={<DocsPage />} />
             <Route path="/retrieval" element={<RetrievalPage />} />

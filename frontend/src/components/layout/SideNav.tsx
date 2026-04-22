@@ -1,6 +1,7 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 const navItems = [
+  { to: '/',          icon: 'home',            label: '홈' },
   { to: '/chat',      icon: 'chat',            label: '채팅' },
   { to: '/docs',      icon: 'description',     label: '문서 관리' },
   { to: '/retrieval', icon: 'database_search', label: '검색 테스트' },
@@ -19,7 +20,7 @@ export function SideNav({ open, onClose }: SideNavProps) {
     <aside className={`sidebar${open ? ' open' : ''}`}>
       {/* 로고 */}
       <div className="px-5 py-5 flex items-center justify-between border-b border-[#c4c6d1]/15">
-        <div className="flex items-center gap-3">
+        <Link to="/" onClick={onClose} className="flex items-center gap-3 min-w-0 hover:opacity-80 transition-opacity">
           <div className="w-8 h-8 rounded-lg bg-[#001839] flex items-center justify-center flex-shrink-0">
             <span className="material-symbols-outlined text-white" style={{ fontSize: 18 }}>settings_suggest</span>
           </div>
@@ -29,7 +30,7 @@ export function SideNav({ open, onClose }: SideNavProps) {
             </h1>
             <p className="text-[10px] uppercase tracking-widest text-[#455f7e] opacity-60">RAG Backend v1.0</p>
           </div>
-        </div>
+        </Link>
         <button
           className="sidebar-close-btn p-1.5 rounded-lg hover:bg-[#e7e8e9] text-[#43474f]"
           onClick={onClose}
@@ -52,6 +53,7 @@ export function SideNav({ open, onClose }: SideNavProps) {
             <NavLink
               key={to}
               to={to}
+              end={to === '/'}
               onClick={onClose}
               className={[
                 'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors',
