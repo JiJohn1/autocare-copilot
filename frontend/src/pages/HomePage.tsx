@@ -8,8 +8,10 @@ const STEPS = [
     title: '문서 등록',
     subtitle: '직접 입력 또는 파일 업로드',
     desc: 'PDF · DOCX 파일을 업로드하거나 텍스트를 직접 입력하세요. 자동으로 청킹 · 임베딩되어 벡터 DB에 저장됩니다.',
-    note: '테스트용 PDF를 업로드해 즉시 시작 가능',
-    noteIcon: 'info',
+    note: '테스트용 PDF를 다운로드해 바로 업로드해보세요',
+    noteIcon: 'download',
+    downloadUrl: '/AutoCare_Copilot_Test.pdf',
+    downloadName: 'AutoCare_Copilot_Test.pdf',
     pipeline: [
       { icon: 'upload_file',         label: '파일 파싱',      detail: 'pdf-parse / mammoth' },
       { icon: 'auto_awesome_mosaic', label: 'Sliding Window 청킹', detail: 'chunk + overlap' },
@@ -28,6 +30,8 @@ const STEPS = [
     desc: '질의를 입력하면 cosine similarity 기반으로 관련 문서 chunk를 검색하고, 유사도 점수와 함께 결과를 확인합니다.',
     note: '벡터 검색 성능을 점수로 직접 확인 가능',
     noteIcon: 'database_search',
+    downloadUrl: undefined,
+    downloadName: undefined,
     pipeline: [
       { icon: 'hub',             label: '질의 Embedding 변환', detail: 'text-embedding-3-small' },
       { icon: 'database_search', label: 'cosine similarity',   detail: 'pgvector <=> operator' },
@@ -45,6 +49,8 @@ const STEPS = [
     desc: '자동차 관련 질문을 입력하면 문서 검색 → 프롬프트 조합 → LLM 생성 전체 파이프라인이 동작합니다.',
     note: '동일 질문은 Redis 캐시로 즉시 응답',
     noteIcon: 'bolt',
+    downloadUrl: undefined,
+    downloadName: undefined,
     pipeline: [
       { icon: 'database_search',          label: 'Retrieval',    detail: 'pgvector 검색' },
       { icon: 'integration_instructions', label: 'Prompt 조합',  detail: '컨텍스트 + 시스템 프롬프트' },
@@ -157,17 +163,29 @@ export function HomePage() {
               </div>
 
               {/* 노트 + CTA */}
-              <div className="px-4 sm:px-5 py-2.5 space-y-2">
-                <p className="text-[10px] text-[#00838f] font-medium flex items-center gap-1">
-                  <span className="material-symbols-outlined" style={{ fontSize: 12 }}>{step.noteIcon}</span>
-                  {step.note}
-                </p>
+              <div className="px-4 sm:px-5 py-2.5 space-y-1.5">
+                {step.downloadUrl ? (
+                  <a
+                    href={step.downloadUrl}
+                    download={step.downloadName}
+                    className="flex items-center gap-1.5 w-full px-3 py-1.5 rounded-lg border border-[#00838f]/40 bg-[#00838f]/6 text-[10px] font-semibold text-[#00838f] hover:bg-[#00838f]/12 transition-all"
+                  >
+                    <span className="material-symbols-outlined" style={{ fontSize: 13 }}>download</span>
+                    <span className="flex-1">{step.note}</span>
+                    <span className="text-[9px] font-mono text-[#00838f]/70">PDF · 138KB</span>
+                  </a>
+                ) : (
+                  <p className="text-[10px] text-[#00838f] font-medium flex items-center gap-1">
+                    <span className="material-symbols-outlined" style={{ fontSize: 11 }}>{step.noteIcon}</span>
+                    {step.note}
+                  </p>
+                )}
                 <Link
                   to={step.to}
                   className={`flex items-center justify-center gap-1.5 w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold text-white transition-all active:scale-95 ${step.ctaColor}`}
                 >
                   {step.cta}
-                  <span className="material-symbols-outlined" style={{ fontSize: 14 }}>arrow_forward</span>
+                  <span className="material-symbols-outlined" style={{ fontSize: 13 }}>arrow_forward</span>
                 </Link>
               </div>
             </div>
