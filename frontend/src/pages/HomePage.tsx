@@ -84,7 +84,7 @@ export function HomePage() {
               <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
                 <span className="material-symbols-outlined text-white" style={{ fontSize: 16, fontVariationSettings: "'FILL' 1" }}>settings_suggest</span>
               </div>
-              <p className="text-[10px] uppercase tracking-widest text-white/40 font-bold">RAG Backend Demo · v1.1</p>
+              <p className="text-[10px] uppercase tracking-widest text-white/40 font-bold">RAG Backend Demo · v1.01</p>
             </div>
             <h1 className="text-xl sm:text-2xl font-extrabold leading-tight mb-2" style={{ fontFamily: 'Manrope, sans-serif' }}>
               자동차 문서 기반&nbsp;<span className="text-[#00c8e6]">RAG 백엔드 서비스</span>
