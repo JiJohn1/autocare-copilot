@@ -273,7 +273,7 @@ export function DocsPage() {
                     <span className="material-symbols-outlined text-[#c4c6d1]" style={{ fontSize: 44 }}>upload_file</span>
                     <div className="text-center">
                       <p className="text-sm font-semibold text-[#43474f]">파일을 드래그하거나 클릭하여 선택</p>
-                      <p className="text-xs text-[#747780] mt-1">PDF, DOCX 지원 · 최대 20MB</p>
+                      <p className="text-xs text-[#747780] mt-1">PDF, DOCX 지원 · 최대 40MB</p>
                     </div>
                   </>
                 )}

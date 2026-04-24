@@ -18,7 +18,7 @@ async function bootstrap() {
   // Register @fastify/multipart for file upload support (before routes)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   await app.register(multipart as any, {
-    limits: { fileSize: 20 * 1024 * 1024 }, // 20 MB
+    limits: { fileSize: 40 * 1024 * 1024 }, // 40 MB
   });
 
   app.enableCors();
