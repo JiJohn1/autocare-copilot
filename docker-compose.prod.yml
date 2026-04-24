@@ -18,8 +18,7 @@ services:
     # 외부 포트 미노출 - 내부 네트워크만 사용
 
   backend:
-    build:
-      context: ./backend
+    image: ghcr.io/jijohn1/autocare-copilot-backend:latest
     restart: unless-stopped
     env_file: .env.production
     environment:
@@ -32,8 +31,7 @@ services:
       - redis
 
   frontend:
-    build:
-      context: ./frontend
+    image: ghcr.io/jijohn1/autocare-copilot-frontend:latest
     restart: unless-stopped
     ports:
       - "80:80"
